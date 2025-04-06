@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { StudyComponent } from './study/study.component';
 import { CreateComponent } from './create/create.component';
 
 export const routes: Routes = [
@@ -15,11 +14,11 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./login/login.component').then(m => m.LoginComponent),
+        component: LoginComponent,
     },
     {
-        path: 'study/:id',
-        loadComponent: () => import('./study/study.component').then(m => m.StudyComponent),
+        path: 'study-set/:id',
+        loadComponent: () => import('./study-set/study-set.component').then(m => m.StudySetComponent),
     },
     {
         path: 'create',

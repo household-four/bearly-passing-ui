@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { Subject, takeUntil } from 'rxjs';
 import { User, UserDTO } from '../models/user';
@@ -7,6 +7,7 @@ import { HomeService } from './home.service';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
+import { StudySetDTO } from '../models/studySetDto';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private homeService: HomeService,
     private loginService: LoginService,
@@ -35,6 +36,8 @@ export class HomeComponent {
 
   // student things
 
+  // everybody things
+  studySets: StudySetDTO[] = [];
 
   games: any[] = [];
   gameSessions: any[] = [];
@@ -88,16 +91,30 @@ export class HomeComponent {
       // get my grades? classes?
 
       // get my study sets
+
+      // get my assigned games
     } else if (this.role === 'TEACHER') {
       
       this.homeService.getMyStudents(this.user.id).subscribe(students => {
         this.students = students;
         console.log("got students!", students);
       });
-
-      // get my study sets
-
-
     }
+
+    // default: get study sets
+    this.homeService.getMyStudySets(this.user.id).subscribe(studysets => {
+      this.studySets = studysets;
+      console.log("got study sets!", studysets);
+    });
+  }
+
+  editStudySet(set: StudySetDTO) {
+    console.log("navigate to set", set)
+    this.router.navigate(['/study-set', set.id]);
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

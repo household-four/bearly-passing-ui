@@ -1,0 +1,44 @@
+
+Canedit is: {{canEdit}}
+
+@if (!loading && studySet) {
+    <h2>{{studySet.title}}</h2>
+    <h3>{{studySet.description}}</h3>
+    <p-table [value]="studySet.questions">
+        <ng-template #header>
+            <tr>
+                <th>Id</th>
+                <th>Body</th>
+                <th>Answer</th>
+                <th>Difficulty</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-q>
+            <tr>
+                <td>{{q.id}}</td>
+
+                <td>{{q.body}}</td>
+
+                <td>{{q.correctAnswer}}</td>
+                
+                <td> {{q.difficulty}} </td>
+
+                <td> <p-button>Delete question</p-button> </td>
+            </tr>
+            <!-- <tr>
+                <td colspan="5">TODO add new question</td>
+            </tr> -->
+            
+        </ng-template>
+        
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5">No questions found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    [TODO] see everyone who is assigned to this set
+    [TODO allow adding new question]
+}

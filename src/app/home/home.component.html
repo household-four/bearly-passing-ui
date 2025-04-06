@@ -2,6 +2,8 @@
     <h2> Welcome, {{user.username}}!</h2>
 
     <!-- Default items -->
+     <div class="tables-container">
+
     <div>
         [TODO] About me/edit (use api/user/update/{{ '{id}' }})
     </div>
@@ -41,50 +43,72 @@
                 </tr>
             </ng-template>
         </p-table>
-        <div>
-            [TODO] My study sets
-            (table) (edit) (play)
-            (make new)
-        </div>
     } @else if (user.role == 'STUDENT') {
-        <div>
-            <p-table [value]="gameSessions">
-                <ng-template #caption>
-                    <p-badge value="My game sessions" severity="secondary"></p-badge>
-                </ng-template>
-                <ng-template #header>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-gamesession>
-                    <tr>
-                        <td>{{gamesession.id}}</td>
+        <p-table [value]="gameSessions">
+            <ng-template #caption>
+                <p-badge value="My game sessions" severity="secondary"></p-badge>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-gamesession>
+                <tr>
+                    <td>{{gamesession.id}}</td>
 
-                        <td>1</td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            3
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template #emptymessage>
-                    <tr>
-                        <td colspan="4">No game sessions found.</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-        <div>
-            My teachers
-        </div>
+                    <td>1</td>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        3
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="4">No game sessions found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
     }
 
-    
+    <p-table [value]="studySets">
+        <ng-template #caption>
+            <p-badge value="My study sets" severity="secondary"></p-badge>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Questions</th>
+                <th>Edit</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-set>
+            <tr>
+                <td>{{set.id}}</td>
 
+                <td>{{set.title}}</td>
+
+                <td>{{set.description}}</td>
+                
+                <td> {{set.questions.length}} </td>
+
+                <td> <p-button (click)="editStudySet(set)">Edit set</p-button> </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5">No study sets found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+</div>
 }
