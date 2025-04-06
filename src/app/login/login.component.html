@@ -1,0 +1,28 @@
+
+<h2> Select a user to log in. </h2>
+<p-button (click)="populate()">Populate</p-button>
+@if (!loading) {
+<p-table [value]="users">
+    <ng-template #header>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-user>
+        <tr>
+            <td>{{user!.id}}</td>
+
+            <td>{{user!.name}}</td>
+            <td>
+                <p-badge value="{{user!.role}}" [severity]="user.role == 'TEACHER' ? 'info' : user.role == 'ADMIN' ? 'danger' : 'success'"></p-badge>
+            </td>
+            <td>
+                <p-button (click)="selectUser(user)">Log in</p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+}

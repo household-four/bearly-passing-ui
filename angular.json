@@ -75,6 +75,9 @@
               "buildTarget": "bearly-passing-ui:build:development"
             }
           },
+          "options":{
+            "proxyConfig": "proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -103,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ae383978-331a-4bfa-b6b6-1a28dd4be963"
   }
 }
