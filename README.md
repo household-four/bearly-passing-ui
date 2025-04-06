@@ -13,11 +13,14 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`.
 
+During development, if things are rendering weird after making changes, use ctrl+shift+R to hard refresh the page.
+
 ## TODO
 ✅ Select who I am as a user
 ❌ View and edit my user info
 ✅ View my study sets
 ✅ View a specific study set
+✅ Create a new study set
 ❌ Edit my study sets and questions
 ✅ View my students list (teacher only)
 ❌ View my teachers list (student only)
@@ -28,3 +31,4 @@ Once the server is running, open your browser and navigate to `http://localhost:
 ❌ View my game performances (student only)
 ❌ Create new user (login page)
 ❌ Play a game (student only)
+

@@ -8,13 +8,20 @@ import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { StudySetDTO } from '../models/studySetDto';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   imports: [
     ButtonModule,
     BadgeModule,
-    TableModule
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    TableModule,
+    TooltipModule
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -41,6 +48,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   games: any[] = [];
   gameSessions: any[] = [];
+
+  // new study set 
+  creatingNew: boolean = false;
+  newStudySet: {title: string, description: string} = {
+    title: '',
+    description: '',
+  };
 
   loading: boolean = true;
 
@@ -109,12 +123,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   editStudySet(set: StudySetDTO) {
-    console.log("navigate to set", set)
     this.router.navigate(['/study-set', set.id]);
   }
 
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
+  }
+
+  createStudySet( ) {
+    this.creatingNew = true;
+  }
+
+  saveStudySet( ) {
+    this.homeService.postNewStudySet(this.newStudySet, this.user.id).subscribe(studySet => {
+      this.studySets.push(studySet);
+      this.creatingNew = false;
+      this.newStudySet = { title: '', description: '' };
+    });
   }
 }

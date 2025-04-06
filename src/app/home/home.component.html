@@ -103,6 +103,23 @@
                 <td> <p-button (click)="editStudySet(set)">Edit set</p-button> </td>
             </tr>
         </ng-template>
+        <ng-template #footer>
+            <tr> 
+                <td colspan="5"> 
+                        <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                </td>
+            </tr>
+            @if (creatingNew) {
+                <tr>  
+                    <td colspan="5"> 
+                        <input pInputText [(ngModel)]="newStudySet.title" type="text" placeholder="Title" />
+                        <input pInputText [(ngModel)]="newStudySet.description" type="text" placeholder="Description" />
+                        <p-button (click)="saveStudySet()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>
+                    </td>
+                </tr>
+            }
+
+        </ng-template>
         <ng-template #emptymessage>
             <tr>
                 <td colspan="5">No study sets found.</td>

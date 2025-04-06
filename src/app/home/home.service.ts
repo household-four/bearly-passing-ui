@@ -22,4 +22,13 @@ export class HomeService {
   getMyStudySets(userId: number): Observable<StudySetDTO[]> {
     return this.http.get<StudySetDTO[]>(`/api/user/my-study-sets/${userId}`);
   }
+
+  postNewStudySet(newSet: {title: string, description: string}, userId: number): Observable<any> {
+    const params = new HttpParams()
+    .set('name', newSet.title)
+    .set('description', newSet.description)
+    .set('userId', userId.toString());
+
+    return this.http.post<any>(`/api/set/create`, null, { params });
+  }
 }

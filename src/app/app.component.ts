@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    MenubarModule
+    MenubarModule,
+    TooltipModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

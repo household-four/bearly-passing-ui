@@ -31,6 +31,24 @@ Canedit is: {{canEdit}}
             </tr> -->
             
         </ng-template>
+        <ng-template #footer>
+            <tr> 
+                <td colspan="5"> 
+                        <p-button (click)="createQuestion()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                </td>
+            </tr>
+            @if (creatingNew) {
+                <tr>  
+                    <td colspan="5"> 
+                        <input pInputText [(ngModel)]="newQuestion.body" type="text" placeholder="Body" />
+                        <input pInputText [(ngModel)]="newQuestion.correctAnswer" type="text" placeholder="Answer" />
+                        <p-select [(ngModel)]="selectedDifficulty" [options]="difficulties" optionLabel="label" optionValue="value" placeholder="Difficulty" appendTo="body"></p-select>
+                        <p-button (click)="saveNewQuestion()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>
+                    </td>
+                </tr>
+            }
+
+        </ng-template>
         
         <ng-template #emptymessage>
             <tr>
