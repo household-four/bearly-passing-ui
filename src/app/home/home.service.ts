@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudySetDTO } from '../models/studySetDto';
+import { UserDTO } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class HomeService {
     return this.http.get<any>('/api/student/my-games', { params });
   }
 
-  getMyStudents(teacherId: number): Observable<any[]> {
-     return this.http.get<any>(`/api/teacher/my-students/${teacherId}`);
+  getMyStudents(teacherId: number): Observable<UserDTO[]> {
+     return this.http.get<UserDTO[]>(`/api/teacher/my-students/${teacherId}`);
   }
 
   getMyStudySets(userId: number): Observable<StudySetDTO[]> {

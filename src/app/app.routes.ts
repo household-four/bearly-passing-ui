@@ -9,6 +9,10 @@ export const routes: Routes = [
         redirectTo: 'login',
     },
     {
+        path: 'game/:id',
+        loadComponent: () => import('./game/game.component').then(m => m.GameComponent),
+    },
+    {
         path: 'home/:userid',
         loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
     },

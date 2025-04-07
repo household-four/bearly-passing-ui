@@ -18,4 +18,8 @@ export class StudySetService {
   postNewQuestion(newQuestion: NewQuestion ): Observable<any> {
     return this.http.post<any>(`/api/question/create`, newQuestion);
   }
+
+  getGamesByStudySetId(setId: string): Observable<any> {
+    return this.http.get<StudySetDTO>(`/api/set/games/${setId}`);
+  }
 }

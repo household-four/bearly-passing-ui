@@ -11,9 +11,20 @@ To run the code locally, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`.
+The [backend code repo](https://github.com/household-four/BearlyPassing) must also be running. Once the both codebases are running, 
+open your browser and navigate to `http://localhost:4200/`. 
 
-During development, if things are rendering weird after making changes, use ctrl+shift+R to hard refresh the page.
+During development, if things are rendering strangely after making changes, use ctrl+shift+R to hard refresh the page.
+
+## User Guide
+Once the app is running, navigating to `http://localhost:4200/` will bring you to the login page. 
+
+We did not implement traditional authentication, instead focusing our efforts on demonstrating the relationships 
+between the entities in our system. As such, you may simply choose a user from the list to 'log in' as that user. 
+
+### Teachers
+
+### Students
 
 ## TODO
 ✅ Select who I am as a user
@@ -21,14 +32,21 @@ During development, if things are rendering weird after making changes, use ctrl
 ✅ View my study sets
 ✅ View a specific study set
 ✅ Create a new study set
+✅ Create a new question for a study set
 ❌ Edit my study sets and questions
 ✅ View my students list (teacher only)
-❌ View my teachers list (student only)
+❌ View my list of teachers (student only)
 ❌ Add and remove my students from my list (teacher only) 
-❌ Add and remove students from a studyset or game (teacher only)
+❌ Add and remove students from or game (teacher only)
 ❌ View my assigned games (student only)
-❌ View my students grades (teacher only) 
+✅ View my students grades on a game (teacher only) 
 ❌ View my game performances (student only)
 ❌ Create new user (login page)
 ❌ Play a game (student only)
+❌ Only set creators should be able to add and remove questions
+❌ Only game creators should be able to see session scores
+❌ Upload sets from canvas 
+❌ Create a new game
+✅ Game view (teacher)
+✅ Game Session view (student)
 

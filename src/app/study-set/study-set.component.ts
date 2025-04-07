@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { NewQuestion, QuestionDTO } from '../models/questionDto';
+import { GameDTO } from '../models/gameDto';
 
 @Component({
   selector: 'app-study',
@@ -36,7 +37,6 @@ export class StudySetComponent implements OnInit, OnDestroy {
   loading: boolean = true;
 
   // new question
-  // new study set 
   creatingNew: boolean = false;
   newQuestion: NewQuestion = {
     body: '',
@@ -51,6 +51,9 @@ export class StudySetComponent implements OnInit, OnDestroy {
     {label: "Hard", value: "HARD"} 
   ]
 
+  // games
+  games: GameDTO[] = [];
+
   constructor(
     private loginService: LoginService,
     private studySetService: StudySetService,
@@ -63,22 +66,12 @@ export class StudySetComponent implements OnInit, OnDestroy {
     if (setId) {
       this.studySetService.getStudySetById(setId).subscribe(studySet => {
         this.studySet = studySet;
+        this.getGames();
         this.loading = false;
       });
     } else {
       this.router.navigate(['/login']);
     }
-
-    // this.loginService.user$
-    //   .pipe(takeUntil(this.destroyed$))
-    //   .subscribe(user => {
-    //     if (user) {
-    //       this.user = user;
-    //       this.checkPermissions();
-    //     } else {
-    //       this.router.navigate(['/login']);
-    //     }
-    //   });
   }
 
   checkPermissions() {
@@ -92,6 +85,13 @@ export class StudySetComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
+  }
+
+  getGames() {
+    this.studySetService.getGamesByStudySetId(JSON.stringify(this.studySet?.id)).subscribe(games => {
+      console.log("got games", games );
+      this.games = games;
+    });
   }
 
   createQuestion() {
@@ -115,5 +115,22 @@ export class StudySetComponent implements OnInit, OnDestroy {
         this.studySet = studySet;
       });
     });
+  }
+
+  getCompletedCount(game: GameDTO): number {
+    return game.gameSessions?.filter(s => s.completed).length || 0;
+  }
+
+  getAvgScore(game: GameDTO): number {
+    const total = game.gameSessions.reduce((sum, session) => sum + (session.score || 0), 0);
+    return total / game.gameSessions.length;
+  }
+
+  createGame() {
+
+  }
+
+  editGame(game: GameDTO) {
+    this.router.navigate(['/game', game.id]);
   }
 }

@@ -1,0 +1,55 @@
+@if ( game ) {
+    <h2> Game {{game.id}} for Study Set {{game.studySetName}}</h2>
+    <p-table [value]="gameSessions">
+        <ng-template #caption>
+            <p-badge value="Sessions" severity="secondary"></p-badge>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th>Student</th>
+                <th>Completed</th>
+                <th>Score</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-session>
+            <tr>
+                <td>{{session.studentName}}</td>
+
+                <td>{{session.completed}}</td>
+
+                <td>{{session.score}}</td>
+                
+                <td> <p-button>Unassign User</p-button> </td>
+            </tr>
+            <!-- <tr>
+                <td colspan="5">TODO add new question</td>
+            </tr> -->
+            
+        </ng-template>
+        <ng-template #footer>
+            <tr> 
+                <td colspan="5"> 
+                        <p-button (click)="addUser()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                </td>
+            </tr>
+            <!-- @if (creatingNew) {
+                <tr>  
+                    <td colspan="5"> 
+                        <input pInputText [(ngModel)]="newQuestion.body" type="text" placeholder="Body" />
+                        <input pInputText [(ngModel)]="newQuestion.correctAnswer" type="text" placeholder="Answer" />
+                        <p-select [(ngModel)]="selectedDifficulty" [options]="difficulties" optionLabel="label" optionValue="value" placeholder="Difficulty" appendTo="body"></p-select>
+                        <p-button (click)="saveNewQuestion()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>
+                    </td>
+                </tr>
+            } -->
+
+        </ng-template>
+        
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="4">No sessions found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+}

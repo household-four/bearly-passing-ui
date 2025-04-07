@@ -2,9 +2,15 @@
 Canedit is: {{canEdit}}
 
 @if (!loading && studySet) {
-    <h2>{{studySet.title}}</h2>
+    <h2>Study Set: {{studySet.title}}</h2>
     <h3>{{studySet.description}}</h3>
+    <div class="tables-container">
+
+    
     <p-table [value]="studySet.questions">
+        <ng-template #caption>
+            <p-badge value="Questions" severity="secondary"></p-badge>
+        </ng-template>
         <ng-template #header>
             <tr>
                 <th>Id</th>
@@ -57,6 +63,48 @@ Canedit is: {{canEdit}}
         </ng-template>
     </p-table>
 
-    [TODO] see everyone who is assigned to this set
-    [TODO allow adding new question]
+
+    <!-- table: this study set's Game instances, and all of the students assigned (tree table?) -->
+     <!-- allow assigning students, but only YOUR students -->
+     <!-- new game instance -->
+     <p-table [value]="games">
+        <ng-template #caption>
+            <p-badge value="Games" severity="secondary"></p-badge>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Sessions Assigned</th>
+                <th>Sessions Completed</th>
+                <th>Avg. Score</th>
+                <th>Edit</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-game>
+            <tr>
+                <td> {{game.id}} </td>
+                <td> {{game.gameType}} </td>
+                <td> {{game.gameSessions.length}} </td>
+                <td> {{ getCompletedCount(game) }} </td>
+                <td> {{ getAvgScore(game) }} </td>
+                <td> <p-button (click)="editGame(game)">Edit game</p-button> </td>
+            </tr>
+        </ng-template>
+
+        <ng-template #footer>
+            <tr> 
+                <td colspan="6"> 
+                        <p-button (click)="createGame()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5">No games found.</td>
+            </tr>
+        </ng-template>
+     </p-table>
+    </div>
 }
