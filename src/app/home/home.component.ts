@@ -142,4 +142,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.newStudySet = { title: '', description: '' };
     });
   }
+
+  playGame(gameId: string) {
+    this.router.navigate(['/play', gameId]);
+  }
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StudySetDTO } from '../models/studySetDto';
 import { Observable } from 'rxjs';
-import { NewQuestion } from '../models/questionDto';
+import { NewQuestion, QuestionDTO } from '../models/questionDto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,9 @@ export class StudySetService {
 
   getGamesByStudySetId(setId: string): Observable<any> {
     return this.http.get<StudySetDTO>(`/api/set/games/${setId}`);
+  }
+
+  patchUpdateQuestion(questionId: string, question: QuestionDTO): Observable<any> {
+   return this.http.put<any>(`/api/question/update/${questionId}`, question);
   }
 }

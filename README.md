@@ -28,23 +28,25 @@ between the entities in our system. As such, you may simply choose a user from t
 
 ## TODO
 ✅ Select who I am as a user
+❌ Create new user (login page)
 ❌ View and edit my user info
 ✅ View my study sets
 ✅ View a specific study set
 ✅ Create a new study set
 ✅ Create a new question for a study set
-❌ Edit my study sets and questions
+❌ Edit my study set's details like name and description
+✅ Edit the question contents of my study set
 ✅ View my students list (teacher only)
 ❌ View my list of teachers (student only)
 ❌ Add and remove my students from my list (teacher only) 
 ❌ Add and remove students from or game (teacher only)
-❌ View my assigned games (student only)
+✅ View my assigned games (student only)
 ✅ View my students grades on a game (teacher only) 
-❌ View my game performances (student only)
-❌ Create new user (login page)
+✅ View my game performances (student only)
 ❌ Play a game (student only)
 ❌ Only set creators should be able to add and remove questions
 ❌ Only game creators should be able to see session scores
+❌ Only assigned players should be able to answer questions
 ❌ Upload sets from canvas 
 ❌ Create a new game
 ✅ Game view (teacher)

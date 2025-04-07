@@ -9,6 +9,10 @@ export const routes: Routes = [
         redirectTo: 'login',
     },
     {
+        path: 'create',
+        loadComponent: () => import('./create/create.component').then(m => m.CreateComponent),
+    },
+    {
         path: 'game/:id',
         loadComponent: () => import('./game/game.component').then(m => m.GameComponent),
     },
@@ -21,13 +25,14 @@ export const routes: Routes = [
         component: LoginComponent,
     },
     {
+        path: 'play/:gameId',
+        loadComponent: () => import('./play/play.component').then(m => m.PlayComponent),
+    },
+    {
         path: 'study-set/:id',
         loadComponent: () => import('./study-set/study-set.component').then(m => m.StudySetComponent),
     },
-    {
-        path: 'create',
-        loadComponent: () => import('./create/create.component').then(m => m.CreateComponent),
-    },
+
     {
         path: '**',
         redirectTo: 'login',

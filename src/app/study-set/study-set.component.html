@@ -7,7 +7,7 @@ Canedit is: {{canEdit}}
     <div class="tables-container">
 
     
-    <p-table [value]="studySet.questions">
+    <p-table [value]="studySet.questions" (onEditComplete)="saveQuestionEdit($event)">
         <ng-template #caption>
             <p-badge value="Questions" severity="secondary"></p-badge>
         </ng-template>
@@ -20,15 +20,60 @@ Canedit is: {{canEdit}}
                 <th>Delete</th>
             </tr>
         </ng-template>
-        <ng-template #body let-q>
+        <ng-template #body let-q let-i="rowIndex">
             <tr>
                 <td>{{q.id}}</td>
 
-                <td>{{q.body}}</td>
+                <td [pEditableColumn]="q.body" pEditableColumnField="body" [pEditableColumnRowIndex]="q.id">
+                    
+                    <p-cellEditor>
+                        <ng-template #input>
+                            <input
+                                pInputText
+                                type="text"
+                                [(ngModel)]="q.body" />
+                        </ng-template>
+                        <ng-template #output>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            {{q.body}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
 
-                <td>{{q.correctAnswer}}</td>
+                <td [pEditableColumn]="q.correctAnswer" pEditableColumnField="correctAnswer" [pEditableColumnRowIndex]="q.id">
+                    <p-cellEditor>
+                        <ng-template #input>
+                            <input
+                                pInputText
+                                type="text"
+                                [(ngModel)]="q.correctAnswer" />
+                        </ng-template>
+                        <ng-template #output>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            {{q.correctAnswer}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
                 
-                <td> {{q.difficulty}} </td>
+                <td [pEditableColumn]="q.difficulty" pEditableColumnField="difficulty" [pEditableColumnRowIndex]="q.id"> 
+                     
+                    <p-cellEditor>
+                        <ng-template #input>
+                            <p-select 
+                                [(ngModel)]="q.difficulty" 
+                                [options]="difficulties" 
+                                optionLabel="label" 
+                                optionValue="value" 
+                                placeholder="Difficulty" 
+                                appendTo="body">
+                            </p-select>
+                        </ng-template>
+                        <ng-template #output>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            {{q.difficulty}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
 
                 <td> <p-button>Delete question</p-button> </td>
             </tr>

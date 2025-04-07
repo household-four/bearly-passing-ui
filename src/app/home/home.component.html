@@ -51,8 +51,8 @@
             <ng-template #header>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Role</th>
+                    <th>Completed</th>
+                    <th>Score</th>
                     <th>Actions</th>
                 </tr>
             </ng-template>
@@ -60,12 +60,13 @@
                 <tr>
                     <td>{{gamesession.id}}</td>
 
-                    <td>1</td>
+                    <td>{{gamesession.completed}}</td>
                     <td>
-                        2
+                        {{gamesession.score}}
                     </td>
                     <td>
-                        3
+                        <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
+                        <p-button severity="info">Restart</p-button>
                     </td>
                 </tr>
             </ng-template>

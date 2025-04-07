@@ -7,7 +7,7 @@ import { LoginService } from '../login/login.service';
 import { User } from '../models/user';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
+import { TableEditCompleteEvent, TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
@@ -132,5 +132,15 @@ export class StudySetComponent implements OnInit, OnDestroy {
 
   editGame(game: GameDTO) {
     this.router.navigate(['/game', game.id]);
+  }
+
+  saveQuestionEdit(event: TableEditCompleteEvent) {
+    
+    if (event.index) {
+      const question = this.studySet?.questions.filter(q => q.id == JSON.stringify(event.index!))[0] as QuestionDTO;
+      this.studySetService.patchUpdateQuestion(question.id, question).subscribe((q) => {
+      });
+    }
+    
   }
 }
