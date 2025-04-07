@@ -34,10 +34,13 @@ between the entities in our system. As such, you may simply choose a user from t
 ✅ View a specific study set
 ✅ Create a new study set
 ✅ Create a new question for a study set
+❌ Create a new game (teacher)
+❌ students also create study sets / games?
+❌ Upload sets from canvas / other
 ❌ Edit my study set's details like name and description
 ✅ Edit the question contents of my study set
 ✅ View my students list (teacher only)
-❌ View my list of teachers (student only)
+✅ View my list of teachers (student only)
 ❌ Add and remove my students from my list (teacher only) 
 ❌ Add and remove students from or game (teacher only)
 ✅ View my assigned games (student only)
@@ -47,8 +50,7 @@ between the entities in our system. As such, you may simply choose a user from t
 ❌ Only set creators should be able to add and remove questions
 ❌ Only game creators should be able to see session scores
 ❌ Only assigned players should be able to answer questions
-❌ Upload sets from canvas 
-❌ Create a new game
 ✅ Game view (teacher)
 ✅ Game Session view (student)
+
 

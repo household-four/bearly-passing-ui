@@ -16,6 +16,11 @@ export class HomeService {
     return this.http.get<any>('/api/student/my-games', { params });
   }
 
+  getMyTeachers(studentId: number): Observable<UserDTO[]> {
+    const params = new HttpParams().set('studentId', studentId.toString());
+    return this.http.get<any>('/api/student/my-teachers', { params });
+  }
+
   getMyStudents(teacherId: number): Observable<UserDTO[]> {
      return this.http.get<UserDTO[]>(`/api/teacher/my-students/${teacherId}`);
   }

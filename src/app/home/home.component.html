@@ -76,6 +76,34 @@
                 </tr>
             </ng-template>
         </p-table>
+
+        <p-table [value]="teachers">
+            <ng-template #caption>
+                <p-badge value="My teachers" severity="secondary"></p-badge>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-teacher>
+                <tr>
+                    <td>{{teacher.id}}</td>
+
+                    <td>{{teacher.username}}</td>
+                    <td>
+                        <p-badge value="{{teacher.role}}" severity="success"></p-badge>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="4">No teachers found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
     }
 
     <p-table [value]="studySets">

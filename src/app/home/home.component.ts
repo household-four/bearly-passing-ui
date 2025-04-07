@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   students: UserDTO[] = [];
 
   // student things
-
+  teachers: UserDTO[] = [];
   // everybody things
   studySets: StudySetDTO[] = [];
 
@@ -95,12 +95,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getUserItems() {
     if (this.role === 'STUDENT') {
+      // get my game sessions
       this.homeService.getMyGameSessions(this.user.id).subscribe(games => {
         console.log("got student game sessions!", games);
         this.gameSessions = games;
       });
 
       // get my teachers
+      this.homeService.getMyTeachers(this.user.id).subscribe(teachers => {
+        console.log("got student's teachers!", teachers);
+        this.teachers = teachers;
+      });
 
       // get my grades? classes?
 
