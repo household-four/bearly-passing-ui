@@ -11,6 +11,7 @@ export interface GameSession {
     id: number;
     gameId: number;
     studentId: number;
+    studentName: string;
     score: number;
     completed: boolean;
 }

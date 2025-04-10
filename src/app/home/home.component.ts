@@ -11,6 +11,7 @@ import { StudySetDTO } from '../models/studySetDto';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor(
+    private appService: AppService,
     private homeService: HomeService,
     private loginService: LoginService,
     private route: ActivatedRoute,
@@ -59,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading: boolean = true;
 
   ngOnInit(): void {
-    this.loginService.user$
+    this.appService.user$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(user => {
         if (user) {
@@ -69,7 +71,10 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.role = user.role;
           this.getUserItems();
         } else {
-          this.initFromRoute();
+          if (this.router.url.startsWith('/home')) {
+            this.initFromRoute();
+          }
+          //this.initFromRoute();
         }
       });
   }
@@ -80,7 +85,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.loginService.getUser(userId).subscribe(user => {
         if (user) {
           const fullUser = { ...user, name: user.username, roleName: user.role };
-          this.loginService.user$.next(fullUser);
+          console.log("HOME COMPONENT INIT FROM ROUTE")
+          this.appService.user$.next(fullUser);
           this.loading = false;
           this.role = user.role;
           this.getUserItems();

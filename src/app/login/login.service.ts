@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-
   constructor(private http: HttpClient) { }
 
   populate(): Observable<string> {

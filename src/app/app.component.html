@@ -8,7 +8,14 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<p-menubar [model]="items" />
+<p-menubar [model]="items" > 
+    <ng-template #start>
+        @if (user) {
+            <p-avatar [label]="user.username.charAt(0)"></p-avatar>
+        }
+        
+    </ng-template>
+</p-menubar>
 
 
 <router-outlet />

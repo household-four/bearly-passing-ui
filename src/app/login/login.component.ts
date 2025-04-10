@@ -6,6 +6,7 @@ import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
 
   constructor(
+    private appService: AppService,
     private loginService: LoginService,
     private router: Router
   ) { }
@@ -43,13 +45,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
 
-    this.loginService.user$
+    this.appService.user$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(user => {
         if (user) {
           this.user = user;
         }
       });
+      this.appService.user$.next(null);
   }
 
   populate() {
@@ -62,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   selectUser(user: User) {
     console.log("USER", user);
-    this.loginService.user$.next(user);
+    this.appService.user$.next(user);
     this.router.navigate(['/home', user.id]);
   }
 
