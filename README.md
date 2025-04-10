@@ -40,8 +40,7 @@ A game can have many game sessions (instances of a game) that are unique to the 
 separate from the game entity itself. The creator of a study set can create more games associated with it. Clicking the 'edit' button takes you to the 
 page for that game. 
 
-The game page shows all of the sessions associated with a particular game. You can see who is assigned to each session, whether or not they have completed it,
-and their performance. 
+The game page shows all of the sessions associated with a particular game. You can see who is assigned to each session, whether or not they have completed it, and their performance. 
 
 ### Teachers
 
@@ -55,34 +54,35 @@ On the home page, students can view a list of their assigned game sessions and a
 ✅complete 🟨 incomplete & not required ❌incomplete & required
 
 
-✅ Select who I am as a user
-🟨 Create new user (login page)
-🟨 View and edit my user info
-✅ View my study sets
-✅ View a specific study set
-✅ Create a new study set
-✅ Create a new question for a study set
-❌ Create a new game (teacher)
-❌ students also create study sets / games?
-❌ Upload sets from canvas
-❌ Upload sets from local file (JSON)
-🟨 Edit my study set's details like name and description
-✅ Edit the question contents of my study set
-✅ View my students list (teacher only)
-✅ View my list of teachers (student only)
-🟨 Add and remove my students from my list (teacher only) 
-✅ Add and remove students from a game (teacher only)
-✅ View my assigned games (student only)
-✅ View my students grades on a game (teacher only) 
-✅ View my game performances (student only)
-✅ Play a game (student only)
-❌ More than one game mode (MATCHING)
-❌ More than one game mode (FLASHCARD)
-🟨 Only set creators should be able to add and remove questions
-🟨 Only game creators should be able to see session scores
-🟨 Only assigned players should be able to answer questions
-✅ Game view (teacher)
-✅ Game Session view (student)
-❌ ensure everyone can demo 3 use cases
+✅ Select who I am as a user  
+🟨 Create new user (login page)  
+🟨 View and edit my user info  
+✅ View my study sets  
+✅ View a specific study set  
+✅ Create a new study set  
+✅ Create a new question for a study set  
+❌ Create a new game (as a teacher)  
+❌ students should also be able to create study sets / games?  
+❌ Upload sets from canvas  
+❌ Upload sets from local file (like JSON)  
+❌ Download sets to local file (like JSON)  
+🟨 Edit my study set's details like name and description  
+✅ Edit the question contents of my study set  
+✅ View my students list (teacher only)  
+✅ View my list of teachers (student only)  
+🟨 Add and remove my students from my students list (teacher only)   
+✅ Add and remove students from a game (teacher only)  
+✅ View my assigned games (student only)  
+✅ View my students grades on a game (teacher only)   
+✅ View my game performances (student only)  
+✅ Play a game (student only)  
+✅ More than one game mode (MATCHING)  
+❌ More than one game mode (FLASHCARD)  
+🟨 Only set creators should be able to add and remove questions  
+🟨 Only game creators should be able to see session scores  
+🟨 Only assigned players should be able to answer questions  
+✅ Game view (teacher)  
+✅ Game Session view (student)  
+❌ ensure everyone can demo 3 use cases  
 
 
