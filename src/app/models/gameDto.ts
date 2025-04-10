@@ -10,8 +10,10 @@ export interface GameDTO {
 export interface GameSession {
     id: number;
     gameId: number;
+    gameType: "MATCHING" | "FLASHCARD" | "TIMED" | "ELIMINATION";
     studentId: number;
     studentName: string;
+    studySetId: number;
     score: number;
     completed: boolean;
 }

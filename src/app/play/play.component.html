@@ -1,1 +1,18 @@
-<p>play works!</p>
+@if (!loading) {
+    @switch(session.gameType) {
+        @case("MATCHING") {
+            <app-matching 
+                *ngIf="session && questions.length > 0"
+                [questions]="questions" 
+                [sessionId]="session.id">
+            </app-matching>
+            
+        }
+        @case("FLASHCARD") {
+
+        }
+        @default {
+            Not yet implemented.
+        }
+    }
+}

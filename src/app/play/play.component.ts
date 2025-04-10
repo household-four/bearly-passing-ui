@@ -3,10 +3,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlayService } from './play.service';
 import { StudySetService } from '../study-set/study-set.service';
 import { QuestionDTO } from '../models/questionDto';
+import { GameSession } from '../models/gameDto';
+import { CardModule } from 'primeng/card';
+import { MatchingComponent } from './matching/matching.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-play',
-  imports: [],
+  imports: [
+    CardModule,
+    CommonModule,
+    MatchingComponent
+  ],
   templateUrl: './play.component.html',
   styleUrl: './play.component.scss'
 })
@@ -22,14 +30,20 @@ export class PlayComponent implements OnInit {
   }
 
   questions: QuestionDTO[] = [];
+  loading: boolean = true;
+  session!: GameSession;
+
+  // Matching mode
   
   ngOnInit(): void {
-    const sessionId = this.route.snapshot.paramMap.get('gameId');
+    const sessionId = this.route.snapshot.paramMap.get('sessionId');
     if (sessionId) {
-      this.studySetService.getStudySetById(sessionId).subscribe(studySet => {
-        console.log("got questions", studySet.questions)
-        this.questions = studySet.questions;
-        
+      this.playService.getSessionById(sessionId).subscribe(session => {
+        this.session = session;
+        this.studySetService.getStudySetById(session.studySetId.toString()).subscribe(studySet => {
+          this.questions = studySet.questions;
+          this.loading = false;
+        });
       });
     } else {
       this.router.navigate(['/login']);

@@ -71,11 +71,13 @@ On the home page, students can view a list of their assigned game sessions and a
 ✅ View my students list (teacher only)
 ✅ View my list of teachers (student only)
 🟨 Add and remove my students from my list (teacher only) 
-❌ Add and remove students from a game (teacher only)
+✅ Add and remove students from a game (teacher only)
 ✅ View my assigned games (student only)
 ✅ View my students grades on a game (teacher only) 
 ✅ View my game performances (student only)
-❌ Play a game (student only)
+✅ Play a game (student only)
+❌ More than one game mode (MATCHING)
+❌ More than one game mode (FLASHCARD)
 🟨 Only set creators should be able to add and remove questions
 🟨 Only game creators should be able to see session scores
 🟨 Only assigned players should be able to answer questions

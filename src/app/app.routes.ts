@@ -25,7 +25,7 @@ export const routes: Routes = [
         component: LoginComponent,
     },
     {
-        path: 'play/:gameId',
+        path: 'play/:sessionId',
         loadComponent: () => import('./play/play.component').then(m => m.PlayComponent),
     },
     {
