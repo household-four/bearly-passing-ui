@@ -37,11 +37,7 @@
             </td>
             <td>
               <div style="display: flex; gap: 0.5rem;">
-                <p-button
-                  icon="fa-solid fa-xmark"
-                  tooltipPosition="left"
-                  pTooltip="Remove this student"
-                ></p-button>
+                <p-button icon="fa-solid fa-xmark" tooltipPosition="left" pTooltip="Remove this student"></p-button>
               </div>
             </td>
           </tr>
@@ -77,11 +73,7 @@
             <td>
               <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
-                <p-button
-                  icon="fa-solid fa-rotate-left"
-                  severity="secondary"
-                  pTooltip="Restart this game"
-                ></p-button>
+                <p-button icon="fa-solid fa-rotate-left" severity="secondary" pTooltip="Restart this game"></p-button>
               </div>
             </td>
           </tr>
@@ -146,17 +138,8 @@
           <td>{{ set.questions.length }}</td>
           <td>
             <div style="display: flex; gap: 0.5rem;">
-              <p-button
-                icon="fa-solid fa-file-arrow-down"
-                severity="secondary"
-                (click)="downloadSet(set)"
-                pTooltip="Download to JSON"
-              ></p-button>
-              <p-button
-                icon="fa-solid fa-pen-to-square"
-                (click)="editStudySet(set)"
-                pTooltip="Edit this set"
-              ></p-button>
+              <p-button icon="fa-solid fa-file-arrow-down" severity="secondary" (click)="downloadSet(set)" pTooltip="Download to JSON"></p-button>
+              <p-button icon="fa-solid fa-pen-to-square" (click)="editStudySet(set)" pTooltip="Edit this set"></p-button>
             </div>
           </td>
         </tr>
@@ -165,40 +148,17 @@
         <tr>
           <td colspan="6">
             <div style="display: flex; gap: 1rem;">
-              <p-button
-                (click)="createStudySet()"
-                icon="fa-solid fa-plus"
-                pTooltip="Create new study set"
-              ></p-button>
-              <p-button
-                (click)="openUploadDialog()"
-                severity="secondary"
-                icon="fa-solid fa-upload"
-                pTooltip="Upload from JSON"
-              ></p-button>
+              <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+              <p-button (click)="openUploadDialog()" severity="secondary" icon="fa-solid fa-upload" pTooltip="Upload from JSON"></p-button>
             </div>
           </td>
         </tr>
         @if (creatingNew) {
           <tr>
             <td colspan="6">
-              <input
-                pInputText
-                [(ngModel)]="newStudySet.title"
-                type="text"
-                placeholder="Title"
-              />
-              <input
-                pInputText
-                [(ngModel)]="newStudySet.description"
-                type="text"
-                placeholder="Description"
-              />
-              <p-button
-                (click)="saveStudySet()"
-                icon="fa-solid fa-save"
-                pTooltip="Save new study set"
-              ></p-button>
+              <input pInputText [(ngModel)]="newStudySet.title" type="text" placeholder="Title" />
+              <input pInputText [(ngModel)]="newStudySet.description" type="text" placeholder="Description" />
+              <p-button (click)="saveStudySet()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>
             </td>
           </tr>
         }
@@ -233,18 +193,9 @@
     </p-fileupload>
     <ng-template #footer>
       <div style="display: flex; gap: 1rem">
-        <p-button
-          severity="secondary"
-          icon="fa-solid fa-xmark"
-          (click)="uploadDialogVisible = false"
-          label="Close"
-        ></p-button>
+        <p-button severity="secondary" icon="fa-solid fa-xmark" (click)="uploadDialogVisible = false" label="Close"></p-button>
         @if (studySetFile) {
-          <p-button
-            icon="fa-solid fa-check"
-            (click)="saveJsonSet()"
-            label="Confirm"
-          ></p-button>
+          <p-button icon="fa-solid fa-check" (click)="saveJsonSet()" label="Confirm"></p-button>
         }
       </div>
     </ng-template>
