@@ -1,0 +1,26 @@
+<p-card header="Create a New Game" styleClass="p-mb-3">
+  <form [formGroup]="createGameForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="studySetId">Study Set ID</label>
+        <input id="studySetId" type="text" pInputText formControlName="studySetId" />
+      </div>
+
+      <div class="p-field">
+        <label for="userId">Teacher ID</label>
+        <input id="userId" type="text" pInputText formControlName="userId" />
+      </div>
+
+      <div class="p-field">
+        <label for="gameType">Game Type</label>
+        <p-dropdown 
+          [options]="['FLASHCARD', 'MATCHING']" 
+          formControlName="gameType"
+          placeholder="Select a Game Type">
+        </p-dropdown>
+      </div>
+
+      <button type="submit" pButton label="Create Game" [disabled]="createGameForm.invalid"></button>
+    </div>
+  </form>
+</p-card>

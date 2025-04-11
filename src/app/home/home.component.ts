@@ -167,4 +167,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+
+  goToCreateGame() {
+    this.router.navigate(['/create-game']);
+  }
 }

@@ -13,6 +13,10 @@ export const routes: Routes = [
         loadComponent: () => import('./create/create.component').then(m => m.CreateComponent),
     },
     {
+        path: 'create-game',
+        loadComponent: () => import('./create-game/create-game.component').then(m => m.CreateGameComponent),
+    },
+    {
         path: 'game/:id',
         loadComponent: () => import('./game/game.component').then(m => m.GameComponent),
     },
@@ -32,7 +36,6 @@ export const routes: Routes = [
         path: 'study-set/:id',
         loadComponent: () => import('./study-set/study-set.component').then(m => m.StudySetComponent),
     },
-
     {
         path: '**',
         redirectTo: 'login',
