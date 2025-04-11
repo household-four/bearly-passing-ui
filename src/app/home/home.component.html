@@ -16,8 +16,119 @@
         </div>
   
         <p-table [value]="students">
+<<<<<<< HEAD
           <ng-template #caption>
             <i class="fa-solid fa-users"></i>
+=======
+            <ng-template #caption>
+                <i class="fa-solid fa-users"></i>
+                &nbsp;
+                <p-badge value="My students" severity="secondary"></p-badge>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-student>
+                <tr>
+                    <td>{{student.id}}</td>
+
+                    <td>{{student.username}}</td>
+                    <td>
+                        <p-badge value="{{student.role}}" severity="success"></p-badge>
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <p-button icon="fa-solid fa-xmark" tooltipPosition="left" pTooltip="Remove this student"></p-button>
+                        </div>
+                        
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="4">No students found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    } @else if (user.role == 'STUDENT') {
+        <p-table [value]="gameSessions">
+            <ng-template #caption>
+                <i class="fa-solid fa-gamepad"></i>
+                &nbsp;
+                <p-badge value="My game sessions" severity="secondary"></p-badge>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Completed</th>
+                    <th>Score</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-gamesession>
+                <tr>
+                    <td>{{gamesession.id}}</td>
+                    <td>{{gamesession.gameType}}</td>
+                    <td>{{gamesession.completed}}</td>
+                    <td>
+                        {{gamesession.score}}
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
+                            <p-button icon="fa-solid fa-rotate-left" severity="secondary" pTooltip="Restart this game"></p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="4">No game sessions found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <p-table [value]="teachers">
+            <ng-template #caption>
+                <i class="fa-solid fa-users"></i>
+                &nbsp;
+                <p-badge value="My teachers" severity="secondary"></p-badge>
+            </ng-template>
+            <ng-template #header>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-teacher>
+                <tr>
+                    <td>{{teacher.id}}</td>
+
+                    <td>{{teacher.username}}</td>
+                    <td>
+                        <p-badge value="{{teacher.role}}" severity="success"></p-badge>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage>
+                <tr>
+                    <td colspan="4">No teachers found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    }
+
+    <p-table [value]="studySets">
+        <ng-template #caption>
+            <i class="fa-solid fa-graduation-cap"></i>
+>>>>>>> c32b2d927c98e85e8e4efb423c5af816c23adca0
             &nbsp;
             <p-badge value="My students" severity="secondary"></p-badge>
           </ng-template>
@@ -158,6 +269,7 @@
           </tr>
         </ng-template>
         <ng-template #footer>
+<<<<<<< HEAD
           <tr>
             <td colspan="6">
               <p-button
@@ -188,6 +300,25 @@
                   pTooltip="Save new study set"
                 ></p-button>
               </td>
+=======
+            <tr> 
+                <td colspan="6"> 
+                    <div style="display: flex; gap: 1rem">
+                        <p-button 
+                            (click)="createStudySet()" 
+                            icon="fa-solid fa-plus" 
+                            pTooltip="Create new study set">
+                        </p-button>
+                        <p-button 
+                            (click)="openUploadDialog()" 
+                            severity="secondary" 
+                            icon="fa-solid fa-upload" 
+                            pTooltip="Upload from JSON">
+                        </p-button>
+                    </div>
+                        
+                </td>
+>>>>>>> c32b2d927c98e85e8e4efb423c5af816c23adca0
             </tr>
           }
         </ng-template>
@@ -196,7 +327,39 @@
             <td colspan="5">No study sets found.</td>
           </tr>
         </ng-template>
+<<<<<<< HEAD
       </p-table>
     </div>
   }
   
+=======
+    </p-table>
+</div>
+
+<p-dialog header="Upload JSON" [modal]="true" [(visible)]="uploadDialogVisible" [style]="{ width: '25rem' }">
+    <h4> Create a new study set by uploading a JSON file.</h4>
+    <p-fileupload 
+        (onSelect)="onSelect($event)" 
+        [multiple]="false" 
+        accept=".json" 
+        maxFileSize="1000000" 
+        mode="advanced"
+        [showUploadButton]="false"
+        [showCancelButton]="false"
+        >
+        f
+        <ng-template #empty>
+            <div>Drag and drop files to here to upload.</div>
+        </ng-template>
+    </p-fileupload>
+    <ng-template #footer>
+        <div style="display: flex; gap: 1rem"> 
+            <p-button severity="secondary" icon="fa-solid fa-xmark" (click)="uploadDialogVisible = false" label="Close"></p-button>
+            @if(studySetFile) {
+                <p-button icon="fa-solid fa-check" (click)="saveJsonSet()" label="Confirm"></p-button>
+            }
+        </div>
+    </ng-template >
+</p-dialog>
+}
+>>>>>>> c32b2d927c98e85e8e4efb423c5af816c23adca0

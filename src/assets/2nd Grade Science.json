@@ -1,0 +1,38 @@
+{
+    "id": 1,
+    "title": "2nd Grade Science",
+    "description": "Basic Science Questions for 2nd Graders",
+    "questionIds": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "questions": [
+        {
+            "id": 0,
+            "body": "What state of matter is frozen water?",
+            "correctAnswer": "solid",
+            "difficulty": "MEDIUM"
+        },
+        {
+            "id": 0,
+            "body": "What is the title of the scientist who studies weather?",
+            "correctAnswer": "meteorologist",
+            "difficulty": "HARD"
+        },
+        {
+            "id": 0,
+            "body": "Which gas do plants absorb from the air to help them make their food?",
+            "correctAnswer": "carbon dioxide",
+            "difficulty": "MEDIUM"
+        }
+    ],
+    "creator": {
+        "id": 6,
+        "username": "Mr. Smith",
+        "role": "TEACHER",
+        "name": "Mr. Smith",
+        "roleName": "TEACHER"
+    }
+}

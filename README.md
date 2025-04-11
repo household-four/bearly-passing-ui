@@ -64,7 +64,7 @@ On the home page, students can view a list of their assigned game sessions and a
 ❌ Create a new game (as a teacher)  
 ❌ students should also be able to create study sets / games?  
 ❌ Upload sets from canvas  
-❌ Upload sets from local file (like JSON)  
+✅ Upload sets from local file (like JSON)  
 ✅ Download sets to local file (like JSON)  
 🟨 Edit my study set's details like name and description  
 ✅ Edit the question contents of my study set  
@@ -77,7 +77,7 @@ On the home page, students can view a list of their assigned game sessions and a
 ✅ View my game performances (student only)  
 ✅ Play a game (student only)  
 ✅ More than one game mode (MATCHING)  
-❌ More than one game mode (FLASHCARD)  
+✅ More than one game mode (FLASHCARD)  
 🟨 Only set creators should be able to add and remove questions  
 🟨 Only game creators should be able to see session scores  
 🟨 Only assigned players should be able to answer questions  

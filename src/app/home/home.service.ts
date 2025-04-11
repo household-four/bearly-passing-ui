@@ -37,4 +37,8 @@ export class HomeService {
 
     return this.http.post<any>(`/api/set/create`, null, { params });
   }
+
+  importJsonSet(studySet: StudySetDTO): Observable<StudySetDTO> {
+    return this.http.post<StudySetDTO>('/api/set/json', studySet);
+  }
 }

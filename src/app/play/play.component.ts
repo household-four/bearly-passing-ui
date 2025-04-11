@@ -7,12 +7,14 @@ import { GameSession } from '../models/gameDto';
 import { CardModule } from 'primeng/card';
 import { MatchingComponent } from './matching/matching.component';
 import { CommonModule } from '@angular/common';
+import { FlashcardComponent } from './flashcard/flashcard.component';
 
 @Component({
   selector: 'app-play',
   imports: [
     CardModule,
     CommonModule,
+    FlashcardComponent,
     MatchingComponent
   ],
   templateUrl: './play.component.html',
@@ -48,11 +50,5 @@ export class PlayComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-  }
-
-  answerQuestion(questionId: string, answer: string) {
-    // but if I answer a question, won't it POST the answer to anyone 
-    // who sees this question?
-    // How do I make each question unique to the user?
   }
 }

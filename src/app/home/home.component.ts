@@ -12,12 +12,18 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from '../app.service';
+import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule, FileUploadEvent, FileSelectEvent } from 'primeng/fileupload';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [
     ButtonModule,
     BadgeModule,
+    CommonModule,
+    DialogModule,
+    FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
@@ -35,7 +41,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
+
   destroyed$: Subject<void> = new Subject<void>();
   user!: User;
   role!: User['role'];
@@ -47,13 +54,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   teachers: UserDTO[] = [];
   // everybody things
   studySets: StudySetDTO[] = [];
+  studySetFile: File | null = null;
 
   games: any[] = [];
   gameSessions: any[] = [];
 
   // new study set 
   creatingNew: boolean = false;
-  newStudySet: {title: string, description: string} = {
+  uploadDialogVisible: boolean = false;
+  newStudySet: { title: string; description: string } = {
     title: '',
     description: '',
   };
@@ -65,7 +74,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(user => {
         if (user) {
-
           this.loading = false;
           this.user = user;
           this.role = user.role;
@@ -74,7 +82,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           if (this.router.url.startsWith('/home')) {
             this.initFromRoute();
           }
-          //this.initFromRoute();
         }
       });
   }
@@ -85,7 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.loginService.getUser(userId).subscribe(user => {
         if (user) {
           const fullUser = { ...user, name: user.username, roleName: user.role };
-          console.log("HOME COMPONENT INIT FROM ROUTE")
+          console.log("HOME COMPONENT INIT FROM ROUTE");
           this.appService.user$.next(fullUser);
           this.loading = false;
           this.role = user.role;
@@ -101,32 +108,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getUserItems() {
     if (this.role === 'STUDENT') {
-      // get my game sessions
       this.homeService.getMyGameSessions(this.user.id).subscribe(games => {
         console.log("got student game sessions!", games);
         this.gameSessions = games;
       });
 
-      // get my teachers
       this.homeService.getMyTeachers(this.user.id).subscribe(teachers => {
         console.log("got student's teachers!", teachers);
         this.teachers = teachers;
       });
-
-      // get my grades? classes?
-
-      // get my study sets
-
-      // get my assigned games
     } else if (this.role === 'TEACHER') {
-      
       this.homeService.getMyStudents(this.user.id).subscribe(students => {
         this.students = students;
         console.log("got students!", students);
       });
     }
 
-    // default: get study sets
     this.homeService.getMyStudySets(this.user.id).subscribe(studysets => {
       this.studySets = studysets;
       console.log("got study sets!", studysets);
@@ -142,11 +139,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  createStudySet( ) {
+  createStudySet() {
     this.creatingNew = true;
   }
 
-  saveStudySet( ) {
+  saveStudySet() {
     this.homeService.postNewStudySet(this.newStudySet, this.user.id).subscribe(studySet => {
       this.studySets.push(studySet);
       this.creatingNew = false;
@@ -170,5 +167,39 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goToCreateGame() {
     this.router.navigate(['/create-game']);
+  }
+
+  openUploadDialog() {
+    this.uploadDialogVisible = true;
+    console.log("open upload dialog");
+  }
+
+  onSelect(event: FileSelectEvent) {
+    console.log("uploaded!", event);
+    this.studySetFile = event.files[0];
+  }
+
+  saveJsonSet() {
+    if (!this.studySetFile) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      try {
+        const content = e.target?.result as string;
+        let studySet: StudySetDTO = JSON.parse(content);
+
+        studySet.creator.id = this.user.id;
+
+        this.homeService.importJsonSet(studySet).subscribe(newSet => {
+          console.log("imported study set!", newSet);
+          this.studySets.push(newSet);
+        });
+      } catch (error) {
+        console.error('Error parsing JSON file:', error);
+      }
+    };
+    reader.readAsText(this.studySetFile);
   }
 }
