@@ -148,7 +148,20 @@
         <ng-template #footer>
             <tr> 
                 <td colspan="6"> 
-                        <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                    <div style="display: flex; gap: 1rem">
+                        <p-button 
+                            (click)="createStudySet()" 
+                            icon="fa-solid fa-plus" 
+                            pTooltip="Create new study set">
+                        </p-button>
+                        <p-button 
+                            (click)="openUploadDialog()" 
+                            severity="secondary" 
+                            icon="fa-solid fa-upload" 
+                            pTooltip="Upload from JSON">
+                        </p-button>
+                    </div>
+                        
                 </td>
             </tr>
             @if (creatingNew) {
@@ -168,6 +181,31 @@
             </tr>
         </ng-template>
     </p-table>
-    
 </div>
+
+<p-dialog header="Upload JSON" [modal]="true" [(visible)]="uploadDialogVisible" [style]="{ width: '25rem' }">
+    <h4> Create a new study set by uploading a JSON file.</h4>
+    <p-fileupload 
+        (onSelect)="onSelect($event)" 
+        [multiple]="false" 
+        accept=".json" 
+        maxFileSize="1000000" 
+        mode="advanced"
+        [showUploadButton]="false"
+        [showCancelButton]="false"
+        >
+        f
+        <ng-template #empty>
+            <div>Drag and drop files to here to upload.</div>
+        </ng-template>
+    </p-fileupload>
+    <ng-template #footer>
+        <div style="display: flex; gap: 1rem"> 
+            <p-button severity="secondary" icon="fa-solid fa-xmark" (click)="uploadDialogVisible = false" label="Close"></p-button>
+            @if(studySetFile) {
+                <p-button icon="fa-solid fa-check" (click)="saveJsonSet()" label="Confirm"></p-button>
+            }
+        </div>
+    </ng-template >
+</p-dialog>
 }

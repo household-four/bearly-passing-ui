@@ -12,12 +12,18 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from '../app.service';
+import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule, FileUploadEvent, FileSelectEvent } from 'primeng/fileupload';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [
     ButtonModule,
     BadgeModule,
+    CommonModule,
+    DialogModule,
+    FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
@@ -47,12 +53,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   teachers: UserDTO[] = [];
   // everybody things
   studySets: StudySetDTO[] = [];
+  studySetFile: File | null = null;
 
   games: any[] = [];
   gameSessions: any[] = [];
 
   // new study set 
   creatingNew: boolean = false;
+  uploadDialogVisible: boolean = false;
   newStudySet: {title: string, description: string} = {
     title: '',
     description: '',
@@ -166,5 +174,40 @@ export class HomeComponent implements OnInit, OnDestroy {
     a.download = `${set.title}.json`;
     a.click();
     window.URL.revokeObjectURL(url);
+  }
+
+  openUploadDialog() {
+    this.uploadDialogVisible = true;
+    console.log("open upload dialog");
+  }
+
+  onSelect(event: FileSelectEvent) {
+    console.log("uploaded!", event)
+    this.studySetFile = event.files[0];
+  }
+
+  saveJsonSet() {
+    if (!this.studySetFile) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      try {
+        const content = e.target?.result as string;
+        let studySet: StudySetDTO = JSON.parse(content);
+
+        studySet.creator.id = this.user.id;
+
+        // Post studySet to the server
+        this.homeService.importJsonSet(studySet).subscribe(newSet => {
+          console.log("imported study set!", newSet);
+          this.studySets.push(newSet);
+        });
+      } catch (error) {
+        console.error('Error parsing JSON file:', error);
+      }
+    };
+    reader.readAsText(this.studySetFile);
   }
 }
