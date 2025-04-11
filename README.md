@@ -36,6 +36,8 @@ After logging in, you will be taken to your home page. This will display study s
 Each study set has an 'edit' button that will route you to the edit page for that study set. Here, you can edit the questions that are included in this set 
 and the games that reference this set. 
 
+### Games
+
 A game can have many game sessions (instances of a game) that are unique to the person assigned to the game. This is so each person's answers and results are 
 separate from the game entity itself. The creator of a study set can create more games associated with it. Clicking the 'edit' button takes you to the 
 page for that game. 
@@ -44,11 +46,17 @@ The game page shows all of the sessions associated with a particular game. You c
 
 ### Teachers
 
-On the home page, teachers can view a list of their students.  
+On the home page, teachers can view a list of their students and a list of study sets they have created.
+From the home page study sets can be downloaded locally or edited. On the edit study set page, questions may be modified,
+added, or removed. Each study set also has a list of games that can viewed and edited. For more information about games, see the Games section.
 
 ### Students
 
-On the home page, students can view a list of their assigned game sessions and a list of their teachers. 
+On the home page, students can view a list of their assigned game sessions, a list of their teachers, and a list of their
+personal study sets. Students are able to play the assigned games and view their scores. Students are also able to create
+their own study sets. New study sets require a name and description to get started, then questions can be manually added,
+modified, or deleted.
+
 
 ## TODO
 ✅complete 🟨 incomplete & not required ❌incomplete & required
