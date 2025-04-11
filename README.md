@@ -61,7 +61,7 @@ On the home page, students can view a list of their assigned game sessions and a
 ✅ View a specific study set  
 ✅ Create a new study set  
 ✅ Create a new question for a study set  
-❌ Create a new game (as a teacher)  
+✅ Create a new game (as a teacher)  
 ❌ students should also be able to create study sets / games?  
 ❌ Upload sets from canvas  
 ✅ Upload sets from local file (like JSON)  
