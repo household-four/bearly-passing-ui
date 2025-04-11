@@ -1,60 +1,63 @@
-@if ( game ) {
-    <h2> Game {{game.id}} for Study Set {{game.studySetName}}</h2>
-    <p-table [value]="gameSessions">
-        <ng-template #caption>
-            <p-badge value="Sessions" severity="secondary"></p-badge>
-        </ng-template>
-        <ng-template #header>
-            <tr>
-                <th>Student</th>
-                <th>Completed</th>
-                <th>Score</th>
-                <th>Actions</th>
-            </tr>
-        </ng-template>
-        <ng-template #body let-session>
-            <tr>
-                <td>{{session.studentName}}</td>
+<div class="main-container">
+    <div class="table-container">
+        @if ( game ) {
+            <h2> Game {{game.id}} for Study Set '{{game.studySetName}}'</h2>
+            <p-table [value]="gameSessions">
+                <ng-template #caption>
+                    <p-badge value="Sessions" severity="secondary"></p-badge>
+                </ng-template>
+                <ng-template #header>
+                    <tr>
+                        <th>Student</th>
+                        <th>Completed</th>
+                        <th>Score</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-session>
+                    <tr>
+                        <td>{{session.studentName}}</td>
 
-                <td>{{session.completed}}</td>
+                        <td>
+                            @if (session.completed) {
+                                <i style="color: var(--p-emerald-500)" class="fa-solid fa-check"></i>
+                            } @else {
+                                <i style="color: var(--p-red-500)" class="fa-solid fa-xmark"></i>
+                            }
+                        </td>
 
-                <td>{{session.score}}</td>
+                        <td>{{session.score}}</td>
+                        
+                        <td> <p-button severity="secondary" icon="fa-solid fa-xmark" (click)="unassignUser(session)" pTooltip="Unassign {{session.studentName}}"></p-button> </td>
+                    </tr>
+                </ng-template>
+                <ng-template #footer>
+                    <tr> 
+                        <td colspan="4"> 
+                            <div style="display: flex; width: 100%; align-items: center; gap: 0.5rem;">
+                                <p-button (click)="addUser()" icon="fa-solid fa-plus" pTooltip="Assign more students"></p-button>
+                                @if (addingUser) { 
+                                    <p-multiselect 
+                                        [(ngModel)]="assignedStudents" 
+                                        [options]="students"
+                                        optionLabel="username" 
+                                        placeholder="Select users" 
+                                        display="chip"
+                                        appendTo="body">
+                                    </p-multiselect> 
+                                    <p-button (click)="saveAssignedUsers()" icon="fa-solid fa-save" pTooltip="Save changes"></p-button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
                 
-                <td> <p-button (click)="unassignUser(session)">Unassign User</p-button> </td>
-            </tr>
-            <!-- <tr>
-                <td colspan="5">TODO add new question</td>
-            </tr> -->
-            
-        </ng-template>
-        <ng-template #footer>
-            <tr> 
-                <td colspan="4"> 
-                    <div style="display: flex; width: 100%; align-items: center; gap: 0.5rem;">
-                        <p-button (click)="addUser()" icon="fa-solid fa-plus" pTooltip="Assign more students"></p-button>
-                        @if (addingUser) { 
-                            <p-multiselect 
-                                [(ngModel)]="assignedStudents" 
-                                [options]="students"
-                                optionLabel="username" 
-                                placeholder="Select users" 
-                                display="chip"
-                                appendTo="body">
-                            </p-multiselect> 
-                            <p-button (click)="saveAssignedUsers()" icon="fa-solid fa-save" pTooltip="Save changes"></p-button>
-                        }
-                    </div>
-                </td>
-                
-            </tr>
-            
-
-        </ng-template>
-        
-        <ng-template #emptymessage>
-            <tr>
-                <td colspan="4">No sessions found.</td>
-            </tr>
-        </ng-template>
-    </p-table>
-}
+                <ng-template #emptymessage>
+                    <tr>
+                        <td colspan="4">No sessions found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        }
+    </div>
+</div>

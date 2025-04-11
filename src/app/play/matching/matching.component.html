@@ -1,15 +1,21 @@
-<div class="card-grid">
-    @for (card of shuffledCards; track card.id) {
-    <div class="flip-card" [ngClass]="{
-        flipped: card.matched || isSelected(card),
-        matched: card.matched
-      }" (click)="flipCard(card)">
-        <div class="flip-card-inner">
-            <div class="flip-card-front"></div>
-            <div class="flip-card-back">
-                {{ card.text }}
+<div class="main-container">
+    <div class="card-grid">
+        <div style="width: 100%; padding: 1rem">
+            <h2><i class="fa-solid fa-gamepad"></i> Matching</h2>
+            <h3> Match each question with its answer by flipping over two cards at a time.</h3>
+        </div>
+        @for (card of shuffledCards; track card.id) {
+        <div class="flip-card" [ngClass]="{
+            flipped: card.matched || isSelected(card),
+            matched: card.matched
+        }" (click)="flipCard(card)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"></div>
+                <div class="flip-card-back">
+                    {{ card.text }}
+                </div>
             </div>
         </div>
+        }
     </div>
-    }
 </div>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+    <assessment ident="30759a5ee3af5c23a8b27fab52d2c5ea1195b54a701a1eae6b5b6f4aec5130ce169133a99ee15724" title="TEST">
+        <qtimetadata>
+            <qtimetadatafield>
+                <fieldlabel>cc_maxattempts</fieldlabel>
+                <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+        </qtimetadata>
+        <section ident="root_section">
+            <item ident="1277b902b06374972f1f550aa014a1712390fcf2b6b9bc0b76cb8844f5d4d1c608839251b45aec4f" title="Question">
+                <itemmetadata>
+                    <qtimetadata>
+                        <qtimetadatafield>
+                            <fieldlabel>question_type</fieldlabel>
+                            <fieldentry>multiple_choice_question</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                            <fieldlabel>points_possible</fieldlabel>
+                            <fieldentry>2</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                            <fieldlabel>original_answer_ids</fieldlabel>
+                            <fieldentry>e7c36eab46f25dc5a2d76573591d669025e8102c2ed44561a37dbec279b9b1117a54a70139a9f5b2,71774eaea47f63d9598338f6b0cc43fad6cd08b47a9bdb0c3cdf0d4d4cc6f7a96d294b38fa82e2bc,8372027f7934b0a1b219f93b7bdb916d74a596d824108c550ad0ccbd8bd845050a5a3d962292c671,1e0809ef7b0554640a1db8a0bf2c4658cb93338c14c43592ccfcf8135c439b0808220539e5a6ad73</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                        <fieldlabel>assessment_question_identifierref</fieldlabel><fieldentry>8aaf7da52310e80925d6beb23105cd9cd24020f2f21d320ed147e97460860bb9520feb08e3bbdb4a</fieldentry>
+                        </qtimetadatafield>
+                    </qtimetadata>
+                </itemmetadata>
+                <presentation>
+                    <material>
+                        <mattext texttype="text/html">What is 2+3?</mattext>
+                    </material>
+                    <response_lid ident="response1" rcardinality="Single">
+                        <render_choice>
+                            <response_label ident="e7c36eab46f25dc5a2d76573591d669025e8102c2ed44561a37dbec279b9b1117a54a70139a9f5b2">
+                                <material>
+                                    <mattext texttype="text/html">6</mattext>
+                                </material>
+                            </response_label>
+                            <response_label ident="71774eaea47f63d9598338f6b0cc43fad6cd08b47a9bdb0c3cdf0d4d4cc6f7a96d294b38fa82e2bc">
+                                <material>
+                                    <mattext texttype="text/html">1</mattext>
+                                </material>
+                            </response_label>
+                            <response_label ident="8372027f7934b0a1b219f93b7bdb916d74a596d824108c550ad0ccbd8bd845050a5a3d962292c671">
+                                <material>
+                                    <mattext texttype="text/html">5</mattext>
+                                </material>
+                            </response_label>
+                            <response_label ident="1e0809ef7b0554640a1db8a0bf2c4658cb93338c14c43592ccfcf8135c439b0808220539e5a6ad73">
+                                <material>
+                                    <mattext texttype="text/html">10</mattext>
+                                </material>
+                            </response_label>
+                        </render_choice>
+                    </response_lid>
+                </presentation>
+                <resprocessing>
+                    <outcomes>
+                        <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+                    </outcomes>
+                    <respcondition continue="No">
+                        <conditionvar>
+                            <varequal respident="response1">8372027f7934b0a1b219f93b7bdb916d74a596d824108c550ad0ccbd8bd845050a5a3d962292c671</varequal>
+                        </conditionvar>
+                        <setvar actoin="Set" varname="SCORE">100</setvar>
+                    </respcondition>
+                </resprocessing>
+            </item>
+            <item ident="e9f61c124fcb3dea5676365d3a5eb78102a9bb6064e64696656771bbef9f4bc403e7e73c4cf4ae06" title="Question">
+                <itemmetadata>
+                    <qtimetadata>
+                        <qtimetadatafield>
+                            <fieldlabel>question_type</fieldlabel>
+                            <fieldentry>true_false_question</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                            <fieldlabel>points_possible</fieldlabel>
+                            <fieldentry>2</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                            <fieldlabel>original_answer_ids</fieldlabel>
+                            <fieldentry>8c9139d45622160f3a3418eb0aa9e148d46880343d664719f7da41b048e1baf79f9b516c414f7053,53dc40e4ba862d93e83bdb495e563faf2adf13b18079cbe43c05aa79ef8fd02740b55304467e44e3</fieldentry>
+                        </qtimetadatafield>
+                        <qtimetadatafield>
+                            <fieldlabel>assessment_question_identifierref</fieldlabel>
+                            <fieldentry>505eceb976158ccf0333d92c03c98e70b71074fc098a31860c5a014d856bcc8b76210937813f46b0</fieldentry>
+                        </qtimetadatafield>
+                    </qtimetadata>
+                </itemmetadata>
+                <presentation>
+                    <material>
+                        <mattext texttype="text/html">Water is liquid.</mattext>
+                    </material>
+                    <response_lid ident="response1" rcardinality="Single">
+                        <render_choice>
+                            <response_label ident="8c9139d45622160f3a3418eb0aa9e148d46880343d664719f7da41b048e1baf79f9b516c414f7053">
+                                <material>
+                                    <mattext texttype="text/html">True</mattext>
+                                </material>
+                            </response_label>
+                            <response_label ident="53dc40e4ba862d93e83bdb495e563faf2adf13b18079cbe43c05aa79ef8fd02740b55304467e44e3">
+                                <material>
+                                    <mattext texttype="text/html">False</mattext>
+                                </material>
+                            </response_label>
+                        </render_choice>
+                    </response_lid>
+                </presentation>
+                <resprocessing>
+                    <outcomes>
+                        <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+                    </outcomes>
+                    <respcondition continue="No">
+                        <conditionvar>
+                            <varequal respident="response1">8c9139d45622160f3a3418eb0aa9e148d46880343d664719f7da41b048e1baf79f9b516c414f7053</varequal>
+                        </conditionvar>
+                        <setvar actoin="Set" varname="SCORE">100</setvar>
+                    </respcondition>
+                </resprocessing>
+            </item>
+        </section>
+    </assessment>
+</questestinterop>

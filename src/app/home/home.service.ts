@@ -41,4 +41,12 @@ export class HomeService {
   importJsonSet(studySet: StudySetDTO): Observable<StudySetDTO> {
     return this.http.post<StudySetDTO>('/api/set/json', studySet);
   }
+
+  importXmlSet(file: File, userId: number): Observable<StudySetDTO> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('userId', userId.toString());
+  
+    return this.http.post<StudySetDTO>('/api/set/canvas', formData);
+  }
 }

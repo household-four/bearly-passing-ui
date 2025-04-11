@@ -1,0 +1,14 @@
+.table-container {
+    width: 60%;
+
+    @media (min-width: 1200px) {
+        width: 40%;
+    }
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

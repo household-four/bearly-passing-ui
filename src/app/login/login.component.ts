@@ -7,13 +7,15 @@ import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-login',
   imports: [
     BadgeModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    TooltipModule
   ],
   standalone: true,
   templateUrl: './login.component.html',

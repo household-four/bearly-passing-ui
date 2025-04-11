@@ -1,17 +1,19 @@
 
 @if (!loading && studySet) {
-    <div style="padding: 1rem">
-        <h2> <i class="fa-solid fa-graduation-cap"></i> Study Set: {{studySet.title}}</h2>
-        <h3>{{studySet.description}}</h3>
-        <p-button 
-            icon="fa-solid fa-file-arrow-down" 
-            (click)="downloadSet(studySet)" 
-            pTooltip="Download to JSON" 
-            tooltipPosition="bottom" 
-            label="Download">
-        </p-button>
-    </div>
+<div class="ss-container">
+    
     <div class="tables-container">
+        <div style="width: 100%; padding: 1rem">
+            <h2> <i class="fa-solid fa-graduation-cap"></i> Study Set: {{studySet.title}}</h2>
+            <h3>{{studySet.description}}</h3>
+            <p-button 
+                icon="fa-solid fa-file-arrow-down" 
+                (click)="downloadSet(studySet)" 
+                pTooltip="Download to JSON" 
+                tooltipPosition="bottom" 
+                label="Download">
+            </p-button>
+        </div>
     <p-table [value]="studySet.questions" (onEditComplete)="saveQuestionEdit($event)">
         <ng-template #caption>
             <p-badge value="Questions" severity="secondary"></p-badge>
@@ -157,4 +159,5 @@
         </ng-template>
      </p-table>
     </div>
+</div>
 }

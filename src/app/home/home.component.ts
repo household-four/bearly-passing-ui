@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { Subject, takeUntil } from 'rxjs';
 import { User, UserDTO } from '../models/user';
@@ -8,12 +8,13 @@ import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { StudySetDTO } from '../models/studySetDto';
+import { QuestionDTO } from '../models/questionDto';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from '../app.service';
 import { DialogModule } from 'primeng/dialog';
-import { FileUploadModule, FileUploadEvent, FileSelectEvent } from 'primeng/fileupload';
+import { FileUploadModule, FileUploadEvent, FileSelectEvent, FileUpload } from 'primeng/fileupload';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -35,6 +36,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChild('fileUpload') fileUpload!: FileUpload;
+
   constructor(
     private appService: AppService,
     private homeService: HomeService,
@@ -179,6 +182,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.studySetFile = event.files[0];
   }
 
+  importFile() {
+    if (!this.studySetFile) {
+      return;
+    }
+
+    if (this.studySetFile.type == 'application/json') {
+      this.saveJsonSet();
+    } else {
+      this.saveXmlSet();
+    }
+  }
+
   saveJsonSet() {
     if (!this.studySetFile) {
       return;
@@ -193,13 +208,30 @@ export class HomeComponent implements OnInit, OnDestroy {
         studySet.creator.id = this.user.id;
 
         this.homeService.importJsonSet(studySet).subscribe(newSet => {
-          console.log("imported study set!", newSet);
           this.studySets.push(newSet);
+          this.fileUpload.removeUploadedFile(this.studySetFile);
+          this.fileUpload.clear();
+          this.studySetFile = null;
+          this.uploadDialogVisible = false;
         });
       } catch (error) {
         console.error('Error parsing JSON file:', error);
       }
     };
     reader.readAsText(this.studySetFile);
+  }
+
+  saveXmlSet() {
+    if (!this.studySetFile) {
+      return;
+    }
+
+    this.homeService.importXmlSet(this.studySetFile, this.user.id).subscribe(res => {
+      this.studySets.push(res);
+      this.fileUpload.removeUploadedFile(this.studySetFile);
+      this.fileUpload.clear();
+      this.studySetFile = null;
+      this.uploadDialogVisible = false;
+    });
   }
 }
