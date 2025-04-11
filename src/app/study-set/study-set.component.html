@@ -1,12 +1,17 @@
 
-Canedit is: {{canEdit}}
-
 @if (!loading && studySet) {
-    <h2>Study Set: {{studySet.title}}</h2>
-    <h3>{{studySet.description}}</h3>
+    <div style="padding: 1rem">
+        <h2> <i class="fa-solid fa-graduation-cap"></i> Study Set: {{studySet.title}}</h2>
+        <h3>{{studySet.description}}</h3>
+        <p-button 
+            icon="fa-solid fa-file-arrow-down" 
+            (click)="downloadSet(studySet)" 
+            pTooltip="Download to JSON" 
+            tooltipPosition="bottom" 
+            label="Download">
+        </p-button>
+    </div>
     <div class="tables-container">
-
-    
     <p-table [value]="studySet.questions" (onEditComplete)="saveQuestionEdit($event)">
         <ng-template #caption>
             <p-badge value="Questions" severity="secondary"></p-badge>
@@ -75,7 +80,7 @@ Canedit is: {{canEdit}}
                     </p-cellEditor>
                 </td>
 
-                <td> <p-button>Delete question</p-button> </td>
+                <td> <p-button icon="fa-solid fa-trash" pTooltip="Delete this question" tooltipPosition="left"></p-button> </td>
             </tr>
             <!-- <tr>
                 <td colspan="5">TODO add new question</td>

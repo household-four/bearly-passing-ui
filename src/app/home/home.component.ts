@@ -157,4 +157,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   playGame(gameId: string) {
     this.router.navigate(['/play', gameId]);
   }
+
+  downloadSet(set: StudySetDTO) {
+    const blob = new Blob([JSON.stringify(set)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${set.title}.json`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
 }

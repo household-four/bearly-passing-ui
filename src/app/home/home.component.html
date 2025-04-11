@@ -1,16 +1,17 @@
 @if (!loading) {
-    <h2> Welcome, {{user.username}}!</h2>
+    <div style="padding: 1rem;"> 
+        <h2> <i class="fa-solid fa-user"></i> Welcome, {{user.username}}!</h2>
+    </div>
+    
 
     <!-- Default items -->
      <div class="tables-container">
 
-    <div>
-        [TODO] About me/edit (use api/user/update/{{ '{id}' }})
-    </div>
-
     @if (user.role == 'TEACHER') {
         <p-table [value]="students">
             <ng-template #caption>
+                <i class="fa-solid fa-users"></i>
+                &nbsp;
                 <p-badge value="My students" severity="secondary"></p-badge>
             </ng-template>
             <ng-template #header>
@@ -18,7 +19,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Role</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
             </ng-template>
             <ng-template #body let-student>
@@ -31,7 +32,7 @@
                     </td>
                     <td>
                         <div style="display: flex; gap: 0.5rem;">
-                            <p-button>Remove user</p-button>
+                            <p-button icon="fa-solid fa-xmark" tooltipPosition="left" pTooltip="Remove this student"></p-button>
                         </div>
                         
                     </td>
@@ -46,6 +47,8 @@
     } @else if (user.role == 'STUDENT') {
         <p-table [value]="gameSessions">
             <ng-template #caption>
+                <i class="fa-solid fa-gamepad"></i>
+                &nbsp;
                 <p-badge value="My game sessions" severity="secondary"></p-badge>
             </ng-template>
             <ng-template #header>
@@ -80,6 +83,8 @@
 
         <p-table [value]="teachers">
             <ng-template #caption>
+                <i class="fa-solid fa-users"></i>
+                &nbsp;
                 <p-badge value="My teachers" severity="secondary"></p-badge>
             </ng-template>
             <ng-template #header>
@@ -109,6 +114,8 @@
 
     <p-table [value]="studySets">
         <ng-template #caption>
+            <i class="fa-solid fa-graduation-cap"></i>
+            &nbsp;
             <p-badge value="My study sets" severity="secondary"></p-badge>
         </ng-template>
         <ng-template #header>
@@ -117,7 +124,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Questions</th>
-                <th>Edit</th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template #body let-set>
@@ -130,18 +137,23 @@
                 
                 <td> {{set.questions.length}} </td>
 
-                <td> <p-button (click)="editStudySet(set)">Edit set</p-button> </td>
+                <td> 
+                    <div style="display: flex; gap:0.5rem">
+                        <p-button icon="fa-solid fa-file-arrow-down" severity="secondary" (click)="downloadSet(set)" pTooltip="Download to JSON"></p-button> 
+                        <p-button icon="fa-solid fa-pen-to-square" (click)="editStudySet(set)" pTooltip="Edit this set"></p-button>
+                    </div>
+                </td>
             </tr>
         </ng-template>
         <ng-template #footer>
             <tr> 
-                <td colspan="5"> 
+                <td colspan="6"> 
                         <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
                 </td>
             </tr>
             @if (creatingNew) {
                 <tr>  
-                    <td colspan="5"> 
+                    <td colspan="6"> 
                         <input pInputText [(ngModel)]="newStudySet.title" type="text" placeholder="Title" />
                         <input pInputText [(ngModel)]="newStudySet.description" type="text" placeholder="Description" />
                         <p-button (click)="saveStudySet()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>

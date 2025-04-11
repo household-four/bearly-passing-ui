@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { NewQuestion, QuestionDTO } from '../models/questionDto';
 import { GameDTO } from '../models/gameDto';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-study',
@@ -23,7 +24,8 @@ import { GameDTO } from '../models/gameDto';
     SelectModule,
     ReactiveFormsModule,
     InputTextModule,
-    TableModule
+    TableModule,
+    TooltipModule
   ],
   standalone: true,
   templateUrl: './study-set.component.html',
@@ -142,5 +144,15 @@ export class StudySetComponent implements OnInit, OnDestroy {
       });
     }
     
+  }
+
+  downloadSet(set: StudySetDTO) {
+    const blob = new Blob([JSON.stringify(set)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${set.title}.json`;
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 }

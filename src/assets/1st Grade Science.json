@@ -1,0 +1,44 @@
+{
+    "id": 1,
+    "title": "1st Grade Science",
+    "description": "Basic Science Questions for 1st Graders",
+    "questionIds": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "body": "What is the star at the center of our universe?",
+            "correctAnswer": "sun",
+            "difficulty": "EASY"
+        },
+        {
+            "id": 2,
+            "body": "What part of a plant allows it to make its own food?",
+            "correctAnswer": "leaf",
+            "difficulty": "MEDIUM"
+        },
+        {
+            "id": 3,
+            "body": "What do humans need to breathe?",
+            "correctAnswer": "oxygen",
+            "difficulty": "EASY"
+        },
+        {
+            "id": 4,
+            "body": "Which season is the coldest?",
+            "correctAnswer": "winter",
+            "difficulty": "EASY"
+        }
+    ],
+    "creator": {
+        "id": 6,
+        "username": "Mr. Smith",
+        "role": "TEACHER",
+        "name": "Mr. Smith",
+        "roleName": "TEACHER"
+    }
+}
