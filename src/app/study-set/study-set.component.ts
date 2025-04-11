@@ -129,7 +129,7 @@ export class StudySetComponent implements OnInit, OnDestroy {
   }
 
   createGame() {
-
+    this.router.navigate(['/create-game']);
   }
 
   editGame(game: GameDTO) {
