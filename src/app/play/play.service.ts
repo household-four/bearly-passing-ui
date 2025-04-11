@@ -18,7 +18,7 @@ export class PlayService {
     gameSessionId: number;
     questionId: string;
     submittedAnswer: string;
-  }): Observable<string> {
-    return this.http.post<string>('/api/gamesession/answer', answer); 
+  }): Observable<{message: string}> {
+    return this.http.post<{message: string}>('/api/gamesession/answer', answer); 
   }
 }

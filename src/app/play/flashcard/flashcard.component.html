@@ -1,0 +1,25 @@
+<div style="padding: 4rem">
+
+
+    <p-card>
+        <div *ngIf="currentIndex < questions.length; else allDone">
+            <h3>Flashcard Quiz</h3>
+            <h4 *ngIf="feedback">{{ feedback }}</h4>
+            <p>
+                Question {{ currentIndex + 1 }} of {{ questions.length }}:
+            </p>
+            <p>{{ questions[currentIndex].body }}</p>
+
+            <input pInputText type="text" [(ngModel)]="currentAnswer" (keyup.enter)="checkAnswer()"
+                placeholder="Enter your answer..." />
+            <p-button (click)="checkAnswer()">Submit</p-button>
+
+            
+        </div>
+
+        <ng-template #allDone>
+            <h3>All done!</h3>
+            <p>Nice job! You've gone through all flashcards.</p>
+        </ng-template>
+    </p-card>
+</div>

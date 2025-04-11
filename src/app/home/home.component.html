@@ -69,8 +69,10 @@
                         {{gamesession.score}}
                     </td>
                     <td>
-                        <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
-                        <p-button severity="info">Restart</p-button>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
+                            <p-button icon="fa-solid fa-rotate-left" severity="secondary" pTooltip="Restart this game"></p-button>
+                        </div>
                     </td>
                 </tr>
             </ng-template>

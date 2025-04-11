@@ -9,7 +9,11 @@
             
         }
         @case("FLASHCARD") {
-
+            <app-flashcard
+                *ngIf="session && questions.length > 0"
+                [questions]="questions" 
+                [sessionId]="session.id">
+            </app-flashcard>
         }
         @default {
             Not yet implemented.
