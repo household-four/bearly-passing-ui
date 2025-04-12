@@ -74,16 +74,16 @@
                 <td>{{ gamesession.completed }}</td>
                 <td>{{ gamesession.score }}</td>
                 <td>
-                <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
-                    <p-button icon="fa-solid fa-rotate-left" severity="secondary" pTooltip="Restart this game"></p-button>
-                </div>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <p-button (click)="playGame(gamesession.id)">Play now!</p-button>
+                        <p-button icon="fa-solid fa-rotate-left" severity="secondary" pTooltip="Restart this game"></p-button>
+                    </div>
                 </td>
             </tr>
             </ng-template>
             <ng-template #emptymessage>
             <tr>
-                <td colspan="4">No game sessions found.</td>
+                <td colspan="5">No game sessions found.</td>
             </tr>
             </ng-template>
         </p-table>
@@ -126,39 +126,39 @@
         </ng-template>
         <ng-template #header>
             <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Questions</th>
-            <th></th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Questions</th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template #body let-set>
             <tr>
-            <td>{{ set.id }}</td>
-            <td>{{ set.title }}</td>
-            <td>{{ set.description }}</td>
-            <td>{{ set.questions.length }}</td>
-            <td>
-                <div style="display: flex; gap: 0.5rem;">
-                <p-button icon="fa-solid fa-file-arrow-down" severity="secondary" (click)="downloadSet(set)" pTooltip="Download to JSON"></p-button>
-                <p-button icon="fa-solid fa-pen-to-square" (click)="editStudySet(set)" pTooltip="Edit this set"></p-button>
-                </div>
-            </td>
+                <td>{{ set.id }}</td>
+                <td>{{ set.title }}</td>
+                <td>{{ set.description }}</td>
+                <td>{{ set.questions.length }}</td>
+                <td>
+                    <div style="display: flex; gap: 0.5rem;">
+                    <p-button icon="fa-solid fa-file-arrow-down" severity="secondary" (click)="downloadSet(set)" pTooltip="Download to JSON"></p-button>
+                    <p-button icon="fa-solid fa-pen-to-square" (click)="editStudySet(set)" pTooltip="Edit this set"></p-button>
+                    </div>
+                </td>
             </tr>
         </ng-template>
         <ng-template #footer>
             <tr>
-            <td colspan="6">
-                <div style="display: flex; gap: 1rem;">
-                <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
-                <p-button (click)="openUploadDialog()" severity="secondary" icon="fa-solid fa-upload" pTooltip="Upload from JSON or XML"></p-button>
-                </div>
-            </td>
+                <td colspan="5">
+                    <div style="display: flex; gap: 1rem;">
+                    <p-button (click)="createStudySet()" icon="fa-solid fa-plus" pTooltip="Create new study set"></p-button>
+                    <p-button (click)="openUploadDialog()" severity="secondary" icon="fa-solid fa-upload" pTooltip="Upload from JSON or XML"></p-button>
+                    </div>
+                </td>
             </tr>
             @if (creatingNew) {
             <tr>
-                <td colspan="6">
+                <td colspan="5">
                 <input pInputText [(ngModel)]="newStudySet.title" type="text" placeholder="Title" />
                 <input pInputText [(ngModel)]="newStudySet.description" type="text" placeholder="Description" />
                 <p-button (click)="saveStudySet()" icon="fa-solid fa-save" pTooltip="Save new study set"></p-button>
@@ -168,13 +168,13 @@
         </ng-template>
         <ng-template #emptymessage>
             <tr>
-            <td colspan="6">No study sets found.</td>
+            <td colspan="5">No study sets found.</td>
             </tr>
         </ng-template>
         </p-table>
     </div>
 </div>
-<p-dialog header="Upload JSON" [modal]="true" [(visible)]="uploadDialogVisible" [style]="{ width: '25rem' }">
+<p-dialog header="Upload JSON" [modal]="true" [(visible)]="uploadDialogVisible" [style]="{ width: '30rem' }">
     <h4>Create a new study set by uploading a JSON file.</h4>
     <h5>A JSON file must match our format of exported JSON files.</h5>
     <h5>An XML file must match the formatting of a Canvas quiz.</h5>

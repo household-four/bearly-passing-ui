@@ -5,8 +5,8 @@ import { GameService } from '../services/game.service';
 
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-create-game',
@@ -17,7 +17,7 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     CardModule,
     InputTextModule,
-    DropdownModule,
+    SelectModule,
     ButtonModule
   ]
 })

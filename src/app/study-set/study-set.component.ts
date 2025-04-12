@@ -46,7 +46,7 @@ export class StudySetComponent implements OnInit, OnDestroy {
     difficulty: "EASY",
     studySet: { id: 0 }
   };
-  selectedDifficulty: {label: string, value: string} = {label: "Easy", value: "EASY"};
+  selectedDifficulty: string = "EASY";
   difficulties = [
     {label: "Easy", value: "EASY"}, 
     {label: "Medium", value: "MEDIUM"},
@@ -102,8 +102,8 @@ export class StudySetComponent implements OnInit, OnDestroy {
 
   saveNewQuestion() {
     this.newQuestion.studySet.id = this.studySet?.id || 0;
-    this.newQuestion.difficulty = this.selectedDifficulty.value as NewQuestion['difficulty'];
-
+    this.newQuestion.difficulty = this.selectedDifficulty as NewQuestion['difficulty'];
+    console.log("NEW Q", this.newQuestion, "DIFF", this.selectedDifficulty)
     this.studySetService.postNewQuestion(this.newQuestion).subscribe(() => { 
       this.creatingNew = false;
       this.newQuestion = {

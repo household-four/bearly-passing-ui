@@ -8,11 +8,6 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -24,12 +19,6 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura
       }
-    }),
-    importProvidersFrom(
-      InputTextModule,
-      DropdownModule,
-      ButtonModule,
-      CardModule 
-    )
+    })
   ]
 };

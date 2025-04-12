@@ -13,11 +13,11 @@
 
       <div class="form-element">
         <label for="gameType">Game Type</label>
-        <p-dropdown 
+        <p-select
           [options]="['FLASHCARD', 'MATCHING']" 
           formControlName="gameType"
           placeholder="Select a Game Type">
-        </p-dropdown>
+        </p-select>
       </div>
 
       <button type="submit" pButton label="Create Game" [disabled]="createGameForm.invalid"></button>

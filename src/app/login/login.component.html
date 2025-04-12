@@ -1,9 +1,12 @@
 <div class="main-container">
     <div class="table-container">
         <div style="padding: 1rem">
-            <h2> <i class="fa-solid fa-users"></i> Select a user to log in. </h2>
-            <h3> If no users appear, click populate below. </h3>
-            <p-button severity="secondary" (click)="populate()" pTooltip="Populate data from database">Populate</p-button>
+            @if( users.length == 0 ) {
+                <h3> Click populate to load available users. </h3>
+                <p-button (click)="populate()" pTooltip="Populate data from database">Populate</p-button>
+            } @else () {
+                <h2> <i class="fa-solid fa-users"></i> Select a user to log in. </h2>
+            }
         </div>
         
         @if (!loading) {
